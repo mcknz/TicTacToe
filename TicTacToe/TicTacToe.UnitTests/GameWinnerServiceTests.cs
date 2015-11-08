@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using TicTacToe.Services;
 
 namespace TicTacToe.UnitTests
 {
@@ -13,6 +14,7 @@ namespace TicTacToe.UnitTests
         [Test]
         public void NeitherPlayerHasThreeInARow()
         {
+            IGameWinnerService gameWinnerService;
             const char expected = ' ';
             var gameBoard = new char[3, 3] {
                 {' ',' ',' '},
