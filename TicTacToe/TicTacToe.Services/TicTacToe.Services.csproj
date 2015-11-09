@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameWinnerService.cs" />
     <Compile Include="IGameWinnerService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

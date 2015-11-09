@@ -14,7 +14,7 @@ namespace TicTacToe.UnitTests
         [Test]
         public void NeitherPlayerHasThreeInARow()
         {
-            IGameWinnerService gameWinnerService;
+            IGameWinnerService gameWinnerService = new GameWinnerService();
             const char expected = ' ';
             var gameBoard = new char[3, 3] {
                 {' ',' ',' '},
