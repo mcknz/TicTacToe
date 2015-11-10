@@ -11,31 +11,49 @@ namespace TicTacToe.UnitTests
     [TestFixture]
     public class GameWinnerServiceTests
     {
-        [Test]
-        public void NeitherPlayerHasThreeInARow()
+        private IGameWinnerService _gameWinnerService;
+        private char[,] _gameBoard;
+
+        [SetUp]
+        public void SetupTests()
         {
-            IGameWinnerService gameWinnerService = new GameWinnerService();
-            const char expected = ' ';
-            var gameBoard = new char[3, 3] {
+            _gameWinnerService = new GameWinnerService();
+            _gameBoard = new char[3, 3] {
                 {' ',' ',' '},
                 {' ',' ',' '},
                 {' ',' ',' '}
             };
-            var actual = gameWinnerService.Validate(gameBoard);
+        }
+
+        [Test]
+        public void NeitherPlayerHasThreeInARow()
+        {
+            const char expected = ' ';            
+            var actual = _gameWinnerService.Validate(_gameBoard);
             Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void PlayerWithAllSpacesInTopRowIsWinner()
         {
-            IGameWinnerService gameWinnerService = new GameWinnerService();
             const char expected = 'X';
-            var gameBoard = new char[3, 3] {
-                {expected,expected,expected},
-                {' ',' ',' '},
-                {' ',' ',' '}
-            };
-            var actual = gameWinnerService.Validate(gameBoard);
+            for (var col = 0; col < 3; col++)
+            {
+                _gameBoard[0, col] = expected;
+            }
+            var actual = _gameWinnerService.Validate(_gameBoard);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void PlayerWithAllSpacesInFirstColIsWinner()
+        {
+            const char expected = 'X';
+            for (var row = 0; row < 3; row++)
+            {
+                _gameBoard[row, 0] = expected;
+            }
+            var actual = _gameWinnerService.Validate(_gameBoard);
             Assert.AreEqual(expected, actual);
         }
     }
