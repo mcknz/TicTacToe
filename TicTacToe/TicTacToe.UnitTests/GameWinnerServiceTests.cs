@@ -30,7 +30,7 @@ namespace TicTacToe.UnitTests
         {
             const char expected = ' ';            
             var actual = _gameWinnerService.Validate(_gameBoard);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace TicTacToe.UnitTests
                 _gameBoard[0, col] = expected;
             }
             var actual = _gameWinnerService.Validate(_gameBoard);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
         }
 
         [Test]
@@ -54,7 +54,20 @@ namespace TicTacToe.UnitTests
                 _gameBoard[row, 0] = expected;
             }
             var actual = _gameWinnerService.Validate(_gameBoard);
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+        }
+
+        [Test]
+        public void PlayerWithThreeInARowDiagonallyDownAndToRightIsWinner()
+        {
+            const char expected = 'X';
+            for (var cell = 0; cell < 3; cell++)
+            {
+                _gameBoard[cell, cell] = expected;
+            }
+            var actual = _gameWinnerService.Validate(_gameBoard);
+            Assert.AreEqual(expected.ToString(), actual.ToString());
+            
         }
     }
 }
